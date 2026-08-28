@@ -1,0 +1,16 @@
+node_modules/
+dist/
+.next/
+
+.env
+.env.*
+!.env.example
+
+*.log
+.DS_Store
+
+.vercel/
+
+# Drizzle migrations tracked
+!packages/database/drizzle/
+!packages/database/drizzle/**
