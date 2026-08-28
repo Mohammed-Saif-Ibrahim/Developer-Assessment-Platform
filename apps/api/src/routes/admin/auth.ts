@@ -37,7 +37,7 @@ export default async function adminAuthRoutes(app: FastifyInstance) {
       reply.setCookie(ADMIN_COOKIE_NAME, token, {
         httpOnly: true,
         secure: env.isProduction,
-        sameSite: "lax",
+        sameSite: "none",
         path: "/",
         maxAge: env.jwtExpiresInSeconds,
       });
