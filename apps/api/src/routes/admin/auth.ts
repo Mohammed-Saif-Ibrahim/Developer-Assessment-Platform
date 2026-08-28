@@ -3,8 +3,8 @@ import argon2 from "argon2";
 import { eq } from "drizzle-orm";
 import { getDb, schema } from "@dap/database";
 import { adminLoginSchema } from "@dap/shared";
-import { env } from "../../env";
-import { ADMIN_COOKIE_NAME } from "../../plugins/auth";
+import { env } from "../../env.js";
+import { ADMIN_COOKIE_NAME } from "../../plugins/auth.js";
 
 export default async function adminAuthRoutes(app: FastifyInstance) {
   const db = getDb();

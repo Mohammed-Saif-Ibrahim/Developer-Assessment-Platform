@@ -1,5 +1,5 @@
 import type { FastifyInstance } from "fastify";
-import { getWeakAreaThresholds } from "../../services/weakArea";
+import { getWeakAreaThresholds } from "../../services/weakArea.js";
 
 // Read-only, unauthenticated. These are global app config (admin-tunable
 // under /admin/settings), not per-user data, so there's no session or

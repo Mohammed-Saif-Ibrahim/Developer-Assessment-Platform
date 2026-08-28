@@ -2,10 +2,11 @@
   "name": "@dap/api",
   "version": "1.0.0",
   "private": true,
+  "type": "module",
   "scripts": {
     "dev": "tsx watch src/server.ts",
-    "build": "tsc -p tsconfig.json",
-    "start": "node dist/server.js",
+    "build": "esbuild src/server.ts --bundle --platform=node --target=node20 --format=esm --external:dotenv --external:fastify --external:@fastify/* --external:argon2 --external:drizzle-orm --external:postgres --external:zod --outfile=dist/server.js",
+    "start": "tsx src/server.ts",
     "test": "vitest run",
     "db:seed": "tsx src/seed.ts"
   },
@@ -27,6 +28,7 @@
   },
   "devDependencies": {
     "@types/node": "^20.14.0",
+    "esbuild": "^0.28.2",
     "pino-pretty": "^11.2.2",
     "tsx": "^4.19.0",
     "typescript": "^5.5.4",

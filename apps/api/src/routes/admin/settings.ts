@@ -2,7 +2,7 @@ import type { FastifyInstance } from "fastify";
 import { eq } from "drizzle-orm";
 import { getDb, schema } from "@dap/database";
 import { SETTINGS_KEYS, updateSettingsSchema } from "@dap/shared";
-import { getWeakAreaThresholds } from "../../services/weakArea";
+import { getWeakAreaThresholds } from "../../services/weakArea.js";
 
 export default async function adminSettingsRoutes(app: FastifyInstance) {
   const db = getDb();

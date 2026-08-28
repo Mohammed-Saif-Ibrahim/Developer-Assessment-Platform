@@ -1,21 +1,21 @@
+import { env } from "./env.js";
+import cookiesPlugin from "./plugins/cookies.js";
+import authPlugin from "./plugins/auth.js";
+import rateLimitPlugin from "./plugins/rateLimit.js";
+
+import subjectsRoutes from "./routes/public/subjects.js";
+import questionsRoutes from "./routes/public/questions.js";
+import publicSettingsRoutes from "./routes/public/settings.js";
+
+import adminAuthRoutes from "./routes/admin/auth.js";
+import adminSubjectsRoutes from "./routes/admin/subjects.js";
+import adminTopicsRoutes from "./routes/admin/topics.js";
+import adminQuestionsRoutes from "./routes/admin/questions.js";
+import adminDashboardRoutes from "./routes/admin/dashboard.js";
+import adminSettingsRoutes from "./routes/admin/settings.js";
+
 import Fastify from "fastify";
 import cors from "@fastify/cors";
-import { env } from "./env";
-import cookiesPlugin from "./plugins/cookies";
-import authPlugin from "./plugins/auth";
-import rateLimitPlugin from "./plugins/rateLimit";
-
-import subjectsRoutes from "./routes/public/subjects";
-import questionsRoutes from "./routes/public/questions";
-import publicSettingsRoutes from "./routes/public/settings";
-
-import adminAuthRoutes from "./routes/admin/auth";
-import adminSubjectsRoutes from "./routes/admin/subjects";
-import adminTopicsRoutes from "./routes/admin/topics";
-import adminQuestionsRoutes from "./routes/admin/questions";
-import adminDashboardRoutes from "./routes/admin/dashboard";
-import adminSettingsRoutes from "./routes/admin/settings";
-
 export function buildApp() {
   const app = Fastify({
     logger: {

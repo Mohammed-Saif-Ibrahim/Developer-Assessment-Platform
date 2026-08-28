@@ -1,7 +1,7 @@
 import fp from "fastify-plugin";
 import fastifyJwt from "@fastify/jwt";
 import type { FastifyInstance, FastifyReply, FastifyRequest } from "fastify";
-import { env } from "../env";
+import { env } from "../env.js";
 
 export const ADMIN_COOKIE_NAME = "dap_admin_session";
 
