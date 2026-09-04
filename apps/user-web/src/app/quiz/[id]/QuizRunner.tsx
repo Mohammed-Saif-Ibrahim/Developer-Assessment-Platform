@@ -94,6 +94,7 @@ export default function QuizRunner({ assessment }: { assessment: GeneratedAssess
   const current = questions[index];
   const isMulti = current.type === "multiple_correct";
   const selected = answers[current.id] ?? [];
+  const isLastQuestion = index === questions.length - 1;
 
   const answeredCount = useMemo(
     () => questions.filter((q) => (answers[q.id]?.length ?? 0) > 0).length,
@@ -201,8 +202,8 @@ export default function QuizRunner({ assessment }: { assessment: GeneratedAssess
             </button>
             <button
               onClick={() => setIndex((i) => Math.min(i + 1, questions.length - 1))}
-              disabled={index === questions.length - 1}
-              className="h-10 border border-[var(--border)] px-4 font-mono text-[12px] uppercase tracking-widest disabled:opacity-30"
+              disabled={isLastQuestion}
+              className="h-10 border border-[var(--fg)] bg-[var(--fg)] px-4 font-mono text-[12px] uppercase tracking-widest text-[var(--bg)] transition-opacity hover:opacity-80 disabled:opacity-30 disabled:bg-transparent disabled:text-[var(--fg)] disabled:border-[var(--border)]"
             >
               Next
             </button>
@@ -220,8 +221,8 @@ export default function QuizRunner({ assessment }: { assessment: GeneratedAssess
 
           <button
             onClick={submit}
-            disabled={submitting}
-            className="h-10 border border-[var(--fg)] bg-[var(--fg)] px-6 font-mono text-[12px] uppercase tracking-widest text-[var(--bg)] transition-opacity hover:opacity-80 disabled:opacity-50"
+            disabled={!isLastQuestion || submitting}
+            className="h-10 border border-[var(--fg)] bg-[var(--fg)] px-6 font-mono text-[12px] uppercase tracking-widest text-[var(--bg)] transition-opacity hover:opacity-80 disabled:opacity-30 disabled:bg-transparent disabled:text-[var(--fg)] disabled:border-[var(--border)] disabled:hover:opacity-100"
           >
             {submitting ? "Submitting..." : "Submit assessment"}
           </button>

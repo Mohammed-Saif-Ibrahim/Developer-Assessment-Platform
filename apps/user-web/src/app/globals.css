@@ -64,6 +64,24 @@ body {
   }
 }
 
+/* Indeterminate progress bar used by the cold-start loading screens
+   (src/app/loading.tsx, src/app/subjects/loading.tsx, etc). The API
+   lives on Render's free tier and can take 30-50s to wake from an
+   idle sleep, so this fills the gap while the server component's
+   fetch is still in flight. */
+@keyframes cold-start-sweep {
+  0% {
+    transform: translateX(-100%);
+  }
+  100% {
+    transform: translateX(250%);
+  }
+}
+
+.cold-start-bar {
+  animation: cold-start-sweep 1.1s ease-in-out infinite;
+}
+
 /* Thin, deliberate scrollbar */
 ::-webkit-scrollbar {
   width: 10px;

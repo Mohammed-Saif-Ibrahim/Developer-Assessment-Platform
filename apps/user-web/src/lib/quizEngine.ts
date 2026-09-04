@@ -8,7 +8,6 @@
 
 import {
   DEFAULT_PRACTICE_QUESTION_COUNT,
-  DEFAULT_TIMED_DURATION_SECONDS,
   DEFAULT_TIMED_QUESTION_COUNT,
   DEFAULT_WEAK_AREA_ACCURACY_THRESHOLD,
   DEFAULT_WEAK_AREA_MIN_ATTEMPTS,
@@ -142,10 +141,12 @@ export async function generateAssessment(
 
   selected = selected.slice(0, questionCount);
 
+  // Timed mode gives each question a fixed 1 minute (60s) on the clock.
+  const SECONDS_PER_QUESTION = 60;
+
   const durationSeconds =
     input.mode === "timed"
-      ? input.durationSeconds ??
-        Math.round((selected.length / DEFAULT_TIMED_QUESTION_COUNT) * DEFAULT_TIMED_DURATION_SECONDS)
+      ? input.durationSeconds ?? selected.length * SECONDS_PER_QUESTION
       : null;
 
   return {

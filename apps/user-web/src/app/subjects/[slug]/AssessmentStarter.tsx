@@ -5,11 +5,11 @@ import { useRouter } from "next/navigation";
 import type { AssessmentMode, Difficulty, SubjectWithStats, TopicWithStats } from "@dap/types";
 import { generateAssessment } from "@/lib/quizEngine";
 import { saveCurrentAssessment } from "@/lib/localState";
-import { DEFAULT_PRACTICE_QUESTION_COUNT, DEFAULT_TIMED_DURATION_SECONDS, DEFAULT_TIMED_QUESTION_COUNT } from "@dap/shared";
+import { DEFAULT_PRACTICE_QUESTION_COUNT, DEFAULT_TIMED_QUESTION_COUNT } from "@dap/shared";
 
 const MODES: { value: AssessmentMode; label: string; description: string }[] = [
   { value: "practice", label: "Practice", description: "Untimed, work at your own pace." },
-  { value: "timed", label: "Timed", description: "Fixed question count with a countdown." },
+  { value: "timed", label: "Timed", description: "Fixed question count, 1 minute per question." },
   { value: "mixed", label: "Mixed", description: "A blend of theory and code questions." },
   { value: "topic", label: "Topic practice", description: "Focus on one topic below." },
   { value: "weak_areas", label: "Weak areas", description: "Auto-selected from past performance." },
@@ -47,7 +47,8 @@ export default function AssessmentStarter({
         topicId: mode === "topic" && topicId ? topicId : undefined,
         difficulty,
         questionCount: mode === "timed" ? DEFAULT_TIMED_QUESTION_COUNT : DEFAULT_PRACTICE_QUESTION_COUNT,
-        durationSeconds: mode === "timed" ? DEFAULT_TIMED_DURATION_SECONDS : undefined,
+        // durationSeconds intentionally omitted for timed mode: generateAssessment
+        // derives it from the actual selected question count (1 minute/question).
       });
 
       if (!generated.id || generated.questions.length === 0) {
