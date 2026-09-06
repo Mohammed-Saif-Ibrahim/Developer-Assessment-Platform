@@ -50,7 +50,13 @@ export default async function adminAuthRoutes(app: FastifyInstance) {
 
   // POST /api/v1/admin/auth/logout
   app.post("/auth/logout", async (_request, reply) => {
-    reply.clearCookie(ADMIN_COOKIE_NAME, { path: "/" });
+    reply.clearCookie(ADMIN_COOKIE_NAME, {
+      httpOnly: true,
+      secure: env.isProduction,
+      sameSite: "none",
+      path: "/",
+    });
+
     return reply.code(204).send();
   });
 

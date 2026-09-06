@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import "./globals.css";
+import { Analytics } from "@vercel/analytics/next";
 
 // Deliberately using a system-font stack rather than next/font/google:
 // it removes a network dependency at build time and keeps the app fast
@@ -57,6 +58,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       </head>
       <body className="font-body">
         {children}
+        <Analytics />
       </body>
     </html>
   );
